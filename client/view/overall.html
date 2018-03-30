@@ -8,17 +8,53 @@
             <hr style="width:50px;border:5px solid purple" class="w3-round">
         </div>
 
+
+        <div class="w3-row">
+            <a href="javascript:void(0)" onclick="openRanking(event, 'pl');">
+                <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Programming Languages</div>
+            </a>
+
+            <a href="javascript:void(0)" onclick="openRanking(event, 'tech');">
+                <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Technologies</div>
+            </a>
+        </div>
+
         <!-- Overall-PL -->
-        <div class="w3-container" id="services" style="margin-top:75px">
-            <h1 class="w3-xxlarge w3-text-blue"><b>Programming Languages</b></h1>
+        <div class="w3-container w3-animate-left rank" id="pl" style="margin-top:30px;display:none">
+            <span onclick="this.parentElement.style.display='none'"
+                  class="w3-button w3-large w3-display-topright">&times;</span>
             <hr style="width:50px;border:5px solid purple" class="w3-round">
             <canvas id="Overall-PL" width="600" height="400"></canvas>
         </div>
+
         <!-- Overall-Tech -->
-        <div class="w3-container" id="services" style="margin-top:75px">
-            <h1 class="w3-xxlarge w3-text-blue"><b>Technologies</b></h1>
+        <div class="w3-container w3-animate-right rank" id="tech" style="margin-top:30px;display:none">
+            <span onclick="this.parentElement.style.display='none'"
+                  class="w3-button w3-large w3-display-topright">&times;</span>
             <hr style="width:50px;border:5px solid purple" class="w3-round">
             <canvas id="Overall-Tech" width="600" height="400"></canvas>
         </div>
+
+
     </div>
+
+
+    <script>
+        function openRanking(evt, name) {
+            let i, x, tablinks;
+            x = document.getElementsByClassName("rank");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < x.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" w3-border-blue", "");
+            }
+            document.getElementById(name).style.display = "block";
+            evt.currentTarget.firstElementChild.className += " w3-border-blue";
+        }
+
+
+    </script>
+
 </template>
