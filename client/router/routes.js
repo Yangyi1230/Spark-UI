@@ -1,8 +1,12 @@
 //Author: Dayou Du (2018) 
 //Email : dayoudu@nyu.edu
-import '../ui/body.js';
 
 Router.route('/', function () {
+    // render the Home template with a custom data context
+    this.render('Welcome');
+});
+
+Router.route('/overall', function () {
     // render the Home template with a custom data context
     this.render('Overall');
 });

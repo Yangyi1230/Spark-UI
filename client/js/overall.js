@@ -1,6 +1,6 @@
 //Author: Dayou Du (2018) 
 //Email : dayoudu@nyu.edu
-import Chart from 'chart.js';
+import Chart from '../../node_modules/chart.js/src/chart';
 Template.Overall.onRendered(function(){
     var ctxPL = document.getElementById("Overall-PL");
     var ctxTech = document.getElementById("Overall-Tech");

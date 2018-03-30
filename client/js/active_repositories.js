@@ -1,6 +1,6 @@
 //Author: Dayou Du (2018) 
 //Email : dayoudu@nyu.edu
-import Chart from 'chart.js';
+import Chart from '../../node_modules/chart.js/src/chart';
 Template.ActiveRepositories.onRendered(function(){
     var ctx = document.getElementById("Active-Repos");
     //TODO: Dynamically load data from database
