@@ -22,3 +22,5 @@ insecure@1.0.7                # Allow all DB writes from clients (for prototypin
 kadira:blaze-layout
 iron:router
 maazalik:highcharts
+aslagle:reactive-table
+mizzao:bootstrap-3
