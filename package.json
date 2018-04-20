@@ -2,7 +2,7 @@
   "name": "simple-todos",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "MONGO_URL=mongodb://127.0.0.1/spark meteor run"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.36",
