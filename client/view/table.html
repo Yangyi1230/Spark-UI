@@ -2,6 +2,24 @@
     <div style="margin-top:60px">
         <h1 class="w3-xxlarge w3-text-dark-gray"><b>Table</b></h1>
         <hr style="width:50px;border:3px solid darkorange" class="w3-round">
+        <div class="select-group w3-container w3-margin">
+            <div class="year-select">
+                <select class="w3-select w3-padding-16 w3-margin" style="width:400px" name="option">
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+                    <option value="2015">2015</option>
+                </select>
+            </div>
+            <div class="quarter-select">
+                <select class="w3-select w3-padding-16 w3-margin" style="width:400px" name="option">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+        </div>
         {{> reactiveTable class="table table-bordered table-hover table-striped" settings = settings}}
     </div>
 </Template>

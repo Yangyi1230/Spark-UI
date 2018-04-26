@@ -66,7 +66,7 @@ Template.Table.helpers({
             return {
                 collection: tableCollection,
                 rowsPerPage: 20,
-                showFilter: true,
+                showFilter: false,
                 fields: [
                     {key: 'ranking', label: 'ranking'},
                     {key: 'language', label: 'language'},
@@ -77,3 +77,4 @@ Template.Table.helpers({
         }
     }
 );
+

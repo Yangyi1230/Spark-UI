@@ -11,14 +11,14 @@ Template.Overall.onRendered(function () {
     Meteor.subscribe('languages', {
         onReady: function () {
 
-            let results = collection.find({language: {$in: languageList}});
-            let data = getDataset(results);
+            let plResults = collection.find({language: {$in: languageList}});
+            let plData = getDataset(plResults);
 
             new Chart(ctxPL, {
                 type: 'line',
                 data: {
                     labels: timeList,
-                    datasets: data.obj
+                    datasets: plData.obj
                 },
                 options: {
                     title: {
@@ -38,8 +38,8 @@ Template.Overall.onRendered(function () {
             new Chart(ctxTech, {
                 type: 'line',
                 data: {
-                    labels: data.times,
-                    datasets: data.obj
+                    labels: plData.times,
+                    datasets: plData.obj
                 },
                 options: {
                     title: {
