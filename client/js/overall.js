@@ -3,21 +3,21 @@
 import Chart from '../../node_modules/chart.js/src/chart';
 import {getDataset} from "./graph_data_generator";
 import {collection} from "./collections";
-//const collection = new Mongo.Collection("output");
+import {languageList, timeList} from "./data";
 
 Template.Overall.onRendered(function () {
     let ctxPL = document.getElementById("Overall-PL");
     let ctxTech = document.getElementById("Overall-Tech");
     Meteor.subscribe('languages', {
         onReady: function () {
-            let pls = ["javascript", "python"];//programming language list
-            let results = collection.find({language: {$in: pls}});
+
+            let results = collection.find({language: {$in: languageList}});
             let data = getDataset(results);
 
             new Chart(ctxPL, {
                 type: 'line',
                 data: {
-                    labels: data.times,
+                    labels: timeList,
                     datasets: data.obj
                 },
                 options: {

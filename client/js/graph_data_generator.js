@@ -1,6 +1,7 @@
 //Author: Hao Chen (2018)
 
 import {colorPicker} from "./line_color";
+import {languageList, timeList} from "./data";
 
 function getDataset(results) {
     let map = new Map();//utilize map structure supported by ES6 (languages -> [{time, score}])
@@ -9,8 +10,9 @@ function getDataset(results) {
         if (!map.has(result.language)) {
             map.set(result.language, []);
         }
-        map.get(result.language).push({time: result.time, score: result.score});
-        console.log(`time: ${result.time}, language: ${result.language}, score: ${result.score}`);
+        //only collect data in the given time range
+        if (result.time >= timeList[0] && result.time <= timeList[timeList.length - 1])
+            map.get(result.language).push({time: result.time, score: result.score});
     });
 
     let times = [];// retrieve labels
@@ -24,8 +26,8 @@ function getDataset(results) {
 
     times.sort((a, b) => (a - b));// sort times in ascending order
 
-    console.log("time sequence");
-    times.forEach(time => console.log(time));
+    // console.log("time sequence");
+    // times.forEach(time => console.log(time));
 
     //final datasets, which including all lines, will be attached to Chart.data.datasets
     let plObjArray = [];
@@ -51,9 +53,11 @@ function getDataset(results) {
 
         plObj.data = scores;
         plObj.fill = false;
-        //TODO retrieve color from color list
         plObj.borderColor = colorPicker[idx++];
-        plObjArray.push(plObj)
+        console.log(scores.length);
+        console.log(timeList.length);
+        if (scores.length === timeList.length)
+            plObjArray.push(plObj)
     }
 
     return {obj: plObjArray, times: times};

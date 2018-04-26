@@ -2,63 +2,76 @@
 
 
 import {Mongo} from 'meteor/mongo'
+import {collection} from "./collections";
+import {languageList} from "./data";
+
+const tableCollection = new Mongo.Collection(null);
+
+Template.Table.onCreated(function () {
+    Meteor.subscribe('languages', {
+        onReady: function () {
+            tableCollection.remove({});
+            let pls = languageList;//programming language list
+            //TODO load time from time List
+            //TODO display time in specific month
+            let end = 20181;
+            let beg = 20174;
+            let dataset = [];
+            pls.forEach((pl) => {
+                let nex = collection.findOne({language: pl, time: end});
+                let cur = collection.findOne({language: pl, time: beg});
+                //console.log(cur);
+                //console.log(nex);
+
+                let score = cur.score;
+                let change = nex.score - cur.score;
+
+                if (change >= 0)
+                    change = "+" + change;
+
+                dataset.push({language: pl, score: score, change: change});
+            });
+
+            function compare(a, b) {
+                if (a.score < b.score)
+                    return 1;
+                if (a.score > b.score)
+                    return -1;
+                return 0;
+            }
+
+            dataset.sort(compare);
+
+            dataset.forEach((obj, idx) => {
+                //console.log(idx);
+                tableCollection.insert({
+                    "ranking": idx + 1,
+                    "language": obj.language,
+                    "percentage": obj.score,
+                    "change": obj.change
+                });
+            });
+
+        },
+        onError: function () {
+            console.log("onError", arguments);
+        }
+
+    });
+});
 
 
-//TODO load data dynamically
 Template.Table.helpers({
         settings: function () {
-            const collection = new Mongo.Collection(null);
-            collection.insert({
-                "id": 0,
-                "name": "Item 0",
-                "price": "$0",
-                "amount": 3
-            });
-            collection.insert({
-                "id": 1,
-                "name": "Item 1",
-                "price": "$1",
-                "amount": 4
-            });
-            collection.insert({
-                "id": 2,
-                "name": "Item 2",
-                "price": "$2",
-                "amount": 8
-            });
-            collection.insert({
-                "id": 3,
-                "name": "Item 3",
-                "price": "$3",
-                "amount": 2
-            });
-            collection.insert({
-                "id": 4,
-                "name": "Item 4",
-                "price": "$4",
-                "amount": 90
-            });
-            collection.insert({
-                "id": 5,
-                "name": "Item 5",
-                "price": "$5",
-                "amount": 2
-            });
-            collection.insert({
-                "id": 6,
-                "name": "Item 6",
-                "price": "$6",
-                "amount": 3
-            });
             return {
-                collection: collection,
-                rowsPerPage: 10,
-                showFilter: false,
+                collection: tableCollection,
+                rowsPerPage: 20,
+                showFilter: true,
                 fields: [
-                    {key: 'id', label: 'Id'},
-                    {key: 'name', label: 'Name'},
-                    {key: 'price', label: 'Price'},
-                    {key: 'amount', label: 'Amount'}
+                    {key: 'ranking', label: 'ranking'},
+                    {key: 'language', label: 'language'},
+                    {key: 'percentage', label: 'score'},
+                    {key: 'change', label: 'change'}
                 ]
             }
         }
