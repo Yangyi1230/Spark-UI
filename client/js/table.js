@@ -2,8 +2,7 @@
 
 
 import {Mongo} from 'meteor/mongo'
-import {collection} from "./collections";
-import {languageList} from "./data";
+import {getTableData} from "./table_data_generator";
 
 const tableCollection = new Mongo.Collection(null);
 
@@ -11,39 +10,9 @@ Template.Table.onCreated(function () {
     Meteor.subscribe('languages', {
         onReady: function () {
             tableCollection.remove({});
-            let pls = languageList;//programming language list
-            //TODO load time from time List
-            //TODO display time in specific month
-            let end = 20181;
-            let beg = 20174;
-            let dataset = [];
-            pls.forEach((pl) => {
-                let nex = collection.findOne({language: pl, time: end});
-                let cur = collection.findOne({language: pl, time: beg});
-                //console.log(cur);
-                //console.log(nex);
-
-                let score = cur.score;
-                let change = nex.score - cur.score;
-
-                if (change >= 0)
-                    change = "+" + change;
-
-                dataset.push({language: pl, score: score, change: change});
-            });
-
-            function compare(a, b) {
-                if (a.score < b.score)
-                    return 1;
-                if (a.score > b.score)
-                    return -1;
-                return 0;
-            }
-
-            dataset.sort(compare);
-
-            dataset.forEach((obj, idx) => {
-                //console.log(idx);
+            let time = 20181;
+            let tableData = getTableData(time);
+            tableData.forEach((obj, idx) => {
                 tableCollection.insert({
                     "ranking": idx + 1,
                     "language": obj.language,
@@ -51,7 +20,6 @@ Template.Table.onCreated(function () {
                     "change": obj.change
                 });
             });
-
         },
         onError: function () {
             console.log("onError", arguments);
@@ -68,7 +36,7 @@ Template.Table.helpers({
                 rowsPerPage: 20,
                 showFilter: false,
                 fields: [
-                    {key: 'ranking', label: 'ranking'},
+                    {key: 'ranking', label: ' # ranking'},
                     {key: 'language', label: 'language'},
                     {key: 'percentage', label: 'score'},
                     {key: 'change', label: 'change'}
@@ -77,4 +45,35 @@ Template.Table.helpers({
         }
     }
 );
+
+Template.Table.events({
+    'change select'(event) {
+        let select = event.target;
+        tableCollection.remove({});
+
+        let yearSelect = document.getElementById("year-select");
+        let quarterSelect = document.getElementById("quarter-select");
+
+        let year = yearSelect.options[yearSelect.selectedIndex].value;
+        let quarter = quarterSelect.options[quarterSelect.selectedIndex].value;
+
+
+        let time = parseInt(year + quarter);
+
+        console.log(time);
+
+        let tableData = getTableData(time);
+
+        tableData.forEach((obj, idx) => {
+            tableCollection.insert({
+                "ranking": idx + 1,
+                "language": obj.language,
+                "percentage": obj.score,
+                "change": obj.change
+            });
+        });
+    }
+});
+
+
 

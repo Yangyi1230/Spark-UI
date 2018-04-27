@@ -1,9 +1,9 @@
 //Author: Hao Chen (2018)
 
 import {colorPicker} from "./line_color";
-import {languageList, timeList} from "./data";
+import {timeList} from "./data";
 
-function getDataset(results) {
+function getGraphData(results) {
     let map = new Map();//utilize map structure supported by ES6 (languages -> [{time, score}])
 
     results.forEach((result) => {
@@ -54,8 +54,7 @@ function getDataset(results) {
         plObj.data = scores;
         plObj.fill = false;
         plObj.borderColor = colorPicker[idx++];
-        console.log(scores.length);
-        console.log(timeList.length);
+
         if (scores.length === timeList.length)
             plObjArray.push(plObj)
     }
@@ -63,4 +62,4 @@ function getDataset(results) {
     return {obj: plObjArray, times: times};
 }
 
-export {getDataset};
+export {getGraphData};

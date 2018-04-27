@@ -1,7 +1,7 @@
 //Author: Dayou Du (2018) 
 //Email : dayoudu@nyu.edu
 import Chart from '../../node_modules/chart.js/src/chart';
-import {getDataset} from "./graph_data_generator";
+import {getGraphData} from "./graph_data_generator";
 import {collection} from "./collections";
 
 Template.ActiveRepositories.onRendered(function () {
@@ -12,7 +12,7 @@ Template.ActiveRepositories.onRendered(function () {
 
             let results = collection.find({language: {$in: pls}});
 
-            let data = getDataset(results);
+            let data = getGraphData(results);
 
             let ctx = document.getElementById("Active-Repos");
 
