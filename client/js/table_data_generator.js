@@ -5,24 +5,31 @@ function getTableData(time) {
     let tableData = [];
     let idx = timeList.indexOf(time);
     console.log(idx);
-    if (idx <= 0) return tableData;
-    let end = time;
-    let beg = timeList[idx - 1];
+    if (idx === 0) {
+        let curTime = time;
+        languageList.forEach((pl) => {
+            let cur = collection.findOne({language: pl, time: curTime});
+            let score = cur.score.toFixed(2);
+            let change = "";
+            tableData.push({language: pl, score: score, change: change});
+        });
 
+    } else {
+        let curTime = time;
+        let preTime = timeList[idx - 1];
+        languageList.forEach((pl) => {
+            let cur = collection.findOne({language: pl, time: curTime});
+            let pre = collection.findOne({language: pl, time: preTime});
 
-    //fixme add time range judgement
-    languageList.forEach((pl) => {
-        let nex = collection.findOne({language: pl, time: end});
-        let cur = collection.findOne({language: pl, time: beg});
+            let score = cur.score.toFixed(2);
+            let change = (cur.score - pre.score).toFixed(2);
 
-        let score = cur.score;
-        let change = nex.score - cur.score;
+            if (change >= 0)
+                change = "+" + change;
 
-        if (change >= 0)
-            change = "+" + change;
-
-        tableData.push({language: pl, score: score, change: change});
-    });
+            tableData.push({language: pl, score: score, change: change});
+        });
+    }
 
     function compare(a, b) {
         if (a.score < b.score)
