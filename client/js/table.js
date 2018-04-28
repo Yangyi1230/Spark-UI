@@ -7,6 +7,7 @@ import {getTableData} from "./table_data_generator";
 const tableCollection = new Mongo.Collection(null);
 
 Template.Table.onCreated(function () {
+    Router.get('tableName');
     Meteor.subscribe('languages', {
         onReady: function () {
             tableCollection.remove({});

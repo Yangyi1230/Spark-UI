@@ -3,7 +3,7 @@ import {getGraphData} from "./graph_data_generator";
 import {starCollection} from "./collections";
 import {timeList} from "./data";
 
-Template.Overall.onRendered(function () {
+Template.Star.onRendered(function () {
     let graph = document.getElementById("star_graph");
     Meteor.subscribe('starTable', {
         onReady: function () {

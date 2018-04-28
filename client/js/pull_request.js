@@ -3,7 +3,7 @@ import {getGraphData} from "./graph_data_generator";
 import {prCollection} from "./collections";
 import {timeList} from "./data";
 
-Template.Overall.onRendered(function () {
+Template.PullRequest.onRendered(function () {
     let graph = document.getElementById("pull_request_graph");
     Meteor.subscribe('prTable', {
         onReady: function () {

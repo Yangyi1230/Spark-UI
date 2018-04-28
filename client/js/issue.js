@@ -3,7 +3,7 @@ import {getGraphData} from "./graph_data_generator";
 import {issueCollection} from "./collections";
 import {timeList} from "./data";
 
-Template.Overall.onRendered(function () {
+Template.Issue.onRendered(function () {
     let graph = document.getElementById("issue_graph");
     Meteor.subscribe('issueTable', {
         onReady: function () {

@@ -3,7 +3,7 @@ import {getGraphData} from "./graph_data_generator";
 import {issueCollection, postCollection} from "./collections";
 import {timeList} from "./data";
 
-Template.Overall.onRendered(function () {
+Template.Post.onRendered(function () {
     let graph = document.getElementById("post_graph");
     Meteor.subscribe('postTable', {
         onReady: function () {
