@@ -2,16 +2,16 @@
 //Email : dayoudu@nyu.edu
 import Chart from '../../node_modules/chart.js/src/chart';
 import {getGraphData} from "./graph_data_generator";
-import {collection} from "./collections";
+import {techCollection} from "./collections";
 import {languageList, timeList} from "./data";
 
 Template.Overall.onRendered(function () {
     let ctxPL = document.getElementById("Overall-PL");
     let ctxTech = document.getElementById("Overall-Tech");
-    Meteor.subscribe('languages', {
+    Meteor.subscribe('techTable', {
         onReady: function () {
 
-            let plResults = collection.find({language: {$in: languageList}});
+            let plResults = techCollection.find({language: {$in: languageList}});
             let plData = getGraphData(plResults);
 
             new Chart(ctxPL, {
@@ -35,11 +35,14 @@ Template.Overall.onRendered(function () {
                 }
             });
 
+            let techResults = techCollection.find({});
+            let techData = getGraphData(techResults);
+
             new Chart(ctxTech, {
                 type: 'line',
                 data: {
-                    labels: plData.times,
-                    datasets: plData.obj
+                    labels: timeList,
+                    datasets: techData.obj
                 },
                 options: {
                     title: {

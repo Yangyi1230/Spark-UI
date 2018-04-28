@@ -1,5 +1,5 @@
 import {languageList, timeList} from "./data";
-import {collection} from "./collections";
+import {techCollection} from "./collections";
 
 function getTableData(time) {
     let tableData = [];
@@ -8,7 +8,7 @@ function getTableData(time) {
     if (idx === 0) {
         let curTime = time;
         languageList.forEach((pl) => {
-            let cur = collection.findOne({language: pl, time: curTime});
+            let cur = techCollection.findOne({language: pl, time: curTime});
             let score = cur.score.toFixed(2);
             let change = "";
             tableData.push({language: pl, score: score, change: change});
@@ -18,8 +18,8 @@ function getTableData(time) {
         let curTime = time;
         let preTime = timeList[idx - 1];
         languageList.forEach((pl) => {
-            let cur = collection.findOne({language: pl, time: curTime});
-            let pre = collection.findOne({language: pl, time: preTime});
+            let cur = techCollection.findOne({language: pl, time: curTime});
+            let pre = techCollection.findOne({language: pl, time: preTime});
 
             let score = cur.score.toFixed(2);
             let change = (cur.score - pre.score).toFixed(2);

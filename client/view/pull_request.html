@@ -1,0 +1,19 @@
+<template name="PullRequest">
+    {{>Nav}}
+    <div class="w3-main" style="margin-left:340px;margin-right:40px">
+        <!-- Header -->
+        <div class="w3-container" id="services" style="margin-top:75px">
+            <h1 class="w3-xxxlarge w3-text-dark-gray"><b>Number of Pull Requests on GitHub</b></h1>
+            <hr style="width:50px;border:5px solid darkorange" class="w3-round">
+        </div>
+
+        <div class="w3-container w3-animate-left rank" id="pull_request" style="margin-top:30px">
+            <h1 class="w3-xxlarge w3-text-dark-gray"><b>Graph</b></h1>
+            <hr style="width:50px;border:3px solid darkorange" class="w3-round">
+            <canvas id="Overall-PL" width="600" height="400"></canvas>
+            {{>Table}}
+        </div>
+
+    </div>
+</template>
+
