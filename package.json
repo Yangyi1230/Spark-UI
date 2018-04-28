@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "start": "MONGO_URL=mongodb://localhost/spark meteor",
-    "remote": "MONGO_URL=mongodb://hc2416:hc2416@54.241.195.129:27017/SparkUI meteor"
+    "remote": ""
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.36",
