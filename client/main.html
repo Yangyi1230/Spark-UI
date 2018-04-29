@@ -1,5 +1,9 @@
 <template name="main">
     {{> Template.dynamic template=sidebar}}
+
+
+
+
     {{> Template.dynamic template=content}}
 </template>
 
@@ -7,39 +11,6 @@
 <template name="sidebar">
     <!-- Sidebar/menu -->
 
-    <!--<div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">-->
-    <!--<button class="w3-bar-item w3-button w3-large"-->
-    <!--onclick="w3_close()"> &times;-->
-    <!--</button>-->
-    <!--<a href="/overall" onclick="w3_close()" class="w3-bar-item w3-button">OVERALL</a>-->
-    <!--<a href="/active_repositories" onclick="w3_close()" class="w3-bar-item w3-button">ACTIVE REPOSITORIES</a>-->
-    <!--<a href="/pushes_per_repository" onclick="w3_close()" class="w3-bar-item w3-button">PUSHES PER REPOSITORY</a>-->
-    <!--<a href="/questions_related" onclick="w3_close()" class="w3-bar-item w3-button">QUESTIONS</a>-->
-    <!--</div>-->
-
-    <!--<div id="main">-->
-    <!--<div class="w3-teal">-->
-    <!--<button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>-->
-    <!--<div class="w3-container">-->
-    <!--<a href="/" onclick="w3_close()"><h1>What's Hot & What's New</h1></a>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <!--<script>-->
-    <!--function w3_open() {-->
-    <!--document.getElementById("main").style.marginLeft = "25%";-->
-    <!--document.getElementById("mySidebar").style.width = "25%";-->
-    <!--document.getElementById("mySidebar").style.display = "block";-->
-    <!--document.getElementById("openNav").style.display = 'none';-->
-    <!--}-->
-
-    <!--function w3_close() {-->
-    <!--document.getElementById("main").style.marginLeft = "0%";-->
-    <!--document.getElementById("mySidebar").style.display = "none";-->
-    <!--document.getElementById("openNav").style.display = "inline-block";-->
-    <!--}-->
-    <!--</script>-->
 
 
     <nav class="w3-sidebar w3-black w3-collapse w3-top w3-large w3-padding"
@@ -53,12 +24,12 @@
             <a href="/" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-orange w3-padding-32"><h3>
                 TECHNOLOGY TRENDING</h3></a>
             <a href="/overall" onclick="w3_close()" class="w3-bar-item w3-button  w3-hover-orange">OVERALL</a>
-            <a href="/issue" onclick="w3_close()" class="w3-bar-item w3-button  w3-hover-orange">ISSUES</a>
+            <a href="/github_push" onclick="w3_close()" class="w3-bar-item w3-button  w3-hover-orange">PUSH</a>
+            <a href="/post" onclick="w3_close()" class="w3-bar-item w3-button  w3-hover-orange">POSTS</a>
             <a href="/github_pull_request" onclick="w3_close()" class="w3-bar-item w3-button  w3-hover-orange">PULL
                 REQUESTS</a>
-            <a href="/github_push" onclick="w3_close()" class="w3-bar-item w3-button  w3-hover-orange">PUSH</a>
-            <a href="/github_star" onclick="w3_close()" class="w3-bar-item w3-button  w3-hover-orange">STARTS</a>
-            <a href="/post" onclick="w3_close()" class="w3-bar-item w3-button  w3-hover-orange">POSTS</a>
+            <a href="/issue" onclick="w3_close()" class="w3-bar-item w3-button  w3-hover-orange">ISSUES</a>
+            <a href="/github_star" onclick="w3_close()" class="w3-bar-item w3-button  w3-hover-orange">STARS</a>
         </div>
     </nav>
 
@@ -193,7 +164,6 @@
 </template>
 
 <template name="pull_request_content">
-    {{>Nav}}
     <div class="w3-main" style="margin-left:340px;margin-right:40px">
         <!-- Header -->
         <div class="w3-container" id="services" style="margin-top:75px">
@@ -213,7 +183,6 @@
 
 
 <template name="push_content">
-    {{>Nav}}
     <div class="w3-main" style="margin-left:340px;margin-right:40px">
         <div class="w3-container" id="services" style="margin-top:75px">
             <h1 class="w3-xxxlarge w3-text-dark-gray"><b>Number of Push on GitHub</b></h1>
@@ -230,7 +199,6 @@
 </template>
 
 <template name="star_content">
-    {{>Nav}}
     <div class="w3-main" style="margin-left:340px;margin-right:40px">
         <div class="w3-container" id="services" style="margin-top:75px">
             <h1 class="w3-xxxlarge w3-text-dark-gray"><b>Number of Stars on GitHub</b></h1>
@@ -247,7 +215,6 @@
 </template>
 
 <template name="post_content">
-    {{>Nav}}
     <div class="w3-main" style="margin-left:340px;margin-right:40px">
         <div class="w3-container" id="services" style="margin-top:75px">
             <h1 class="w3-xxxlarge w3-text-dark-gray"><b>Number of Posts on Stack Overflow</b></h1>

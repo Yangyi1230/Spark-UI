@@ -17,7 +17,7 @@ function getTableData(time, collection) {
 
     for (const pl of map.keys()) {
         if (map.get(pl).length === timeList.length) {
-            console.log(pl);
+            //console.log(pl);
             languages.add(pl);
         }
     }
@@ -47,9 +47,9 @@ function getTableData(time, collection) {
     }
 
     function compare(a, b) {
-        if (parseInt(a.score) < parseInt(b.score))
+        if (parseFloat(a.score) < parseFloat(b.score))
             return 1;
-        if (parseInt(a.score) > parseInt(b.score))
+        if (parseFloat(a.score) > parseFloat(b.score))
             return -1;
         return 0;
     }

@@ -23,39 +23,54 @@ function getGraphData(results) {
 
     set.forEach(time => times.push(time));
 
-    times.sort((a, b) => (a - b));// sort times in ascending order
+    times.sort();// sort times in ascending order
 
-    //TODO choose two 19
-
-    //final datasets, which including all lines, will be attached to Chart.data.datasets
-    let plObjArray = [];
+    //times.forEach(x => console.log(x));
 
     //comparator, sort array of object {time, score} based on time
     function compare(a, b) {
-        if (a.time < b.time)
+        if (parseInt(a.time) < parseInt(b.time))
             return -1;
-        if (a.time > b.time)
+        if (parseInt(a.time) > parseInt(b.time))
             return 1;
         return 0;
     }
 
-    let idx = 0;// cursor of colorPicker
+
+    let languageList = [];
+    // get top languages
     for (const pl of map.keys()) {
-        let plObj = {};
-        plObj.label = pl;
-        let scores = [];
         map.get(pl).sort(compare);
-        map.get(pl).forEach(x => {
+        let objArray = map.get(pl);
+        if (objArray.length === timeList.length)
+            languageList.push({language: pl, score: objArray[objArray.length - 1].score});
+    }
+
+    languageList.sort((x1, x2) => (x2.score - x1.score));
+    //languageList.forEach((x) => console.log(x.language + " " + x.score));
+
+
+    languageList = languageList.slice(0, colorPicker.length);
+
+    //final datasets, which including all lines, will be attached to Chart.data.datasets
+    let plObjArray = [];
+
+
+    let idx = 0;// cursor of colorPicker
+    for (const pl of languageList) {
+        let plObj = {};
+        plObj.label = pl.language;
+        let scores = [];
+        map.get(pl.language).forEach(x => {
             scores.push(x.score);
         });
 
         plObj.data = scores;
         plObj.fill = false;
         plObj.borderColor = colorPicker[idx++];
-
-        if (scores.length === timeList.length)
-            plObjArray.push(plObj)
+        plObjArray.push(plObj)
     }
+
 
     return {obj: plObjArray, times: times};
 }

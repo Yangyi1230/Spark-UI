@@ -8,8 +8,7 @@ import {
     languageCollection, postCollection,
     prCollection,
     pushCollection,
-    starCollection,
-    techCollection
+    starCollection
 } from "./collections";
 
 const tableCollection = new Mongo.Collection(null);
@@ -77,7 +76,7 @@ Template.Table.helpers({
         settings: function () {
             return {
                 collection: tableCollection,
-                rowsPerPage: 20,
+                rowsPerPage: 40,
                 showFilter: false,
                 fields: [
                     {key: 'ranking', label: ' # ranking'},
