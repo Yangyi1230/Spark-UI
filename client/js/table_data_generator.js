@@ -14,6 +14,7 @@ function getTableData(time, collection) {
         map.get(result.language).push({time: result.time});
     });
 
+
     for (const pl of map.keys()) {
         if (map.get(pl).length === timeList.length) {
             console.log(pl);
