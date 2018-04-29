@@ -6,8 +6,8 @@ function getTableData(time, collection) {
 
     let languages = new Set();
     collection.find({}).forEach(x => {
+        console.log(x.language + " " + x.time);
         languages.add(x.language);
-        console.log(x.time);
     });
 
     if (idx === 0) {
@@ -25,10 +25,7 @@ function getTableData(time, collection) {
         languages.forEach((pl) => {
             let cur = collection.findOne({language: pl, time: curTime});
             let pre = collection.findOne({language: pl, time: preTime});
-            //fixme language cannot be found
-            //console.log(cur.language);
-            console.log(cur.language);
-
+            console.log(cur);
             let score = cur.score.toFixed(2);
             let change = (cur.score - pre.score).toFixed(2);
 
@@ -40,9 +37,9 @@ function getTableData(time, collection) {
     }
 
     function compare(a, b) {
-        if (a.score < b.score)
+        if (parseInt(a.score) < parseInt(b.score))
             return 1;
-        if (a.score > b.score)
+        if (parseInt(a.score) > parseInt(b.score))
             return -1;
         return 0;
     }

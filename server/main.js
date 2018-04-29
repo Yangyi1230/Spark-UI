@@ -11,6 +11,7 @@ Meteor.startup(() => {
     const postCollection = new Mongo.Collection("NumPost");
     const pushCollection = new Mongo.Collection("NumPush");
     const starCollection = new Mongo.Collection("NumStar");
+
     Meteor.publish('techTable', function () {
         return techCollection.find();
     });

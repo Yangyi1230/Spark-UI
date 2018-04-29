@@ -3,7 +3,7 @@ import {getGraphData} from "./graph_data_generator";
 import {pushCollection} from "./collections";
 import {timeList} from "./data";
 
-Template.Push.onRendered(function () {
+Template.push_content.onRendered(function () {
     let graph = document.getElementById("push_graph");
     Meteor.subscribe('pushTable', {
         onReady: function () {

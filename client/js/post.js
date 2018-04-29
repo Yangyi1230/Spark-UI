@@ -1,9 +1,9 @@
 import Chart from '../../node_modules/chart.js/src/chart';
 import {getGraphData} from "./graph_data_generator";
-import {issueCollection, postCollection} from "./collections";
+import {postCollection} from "./collections";
 import {timeList} from "./data";
 
-Template.Post.onRendered(function () {
+Template.post_content.onRendered(function () {
     let graph = document.getElementById("post_graph");
     Meteor.subscribe('postTable', {
         onReady: function () {

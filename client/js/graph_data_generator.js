@@ -7,12 +7,11 @@ function getGraphData(results) {
     let map = new Map();//utilize map structure supported by ES6 (languages -> [{time, score}])
 
     results.forEach((result) => {
+        //console.log(result.language);
         if (!map.has(result.language)) {
             map.set(result.language, []);
         }
-        //only collect data in the given time range
-        if (result.time >= timeList[0] && result.time <= timeList[timeList.length - 1])
-            map.get(result.language).push({time: result.time, score: result.score});
+        map.get(result.language).push({time: result.time, score: result.score});
     });
 
     let times = [];// retrieve labels
@@ -26,8 +25,7 @@ function getGraphData(results) {
 
     times.sort((a, b) => (a - b));// sort times in ascending order
 
-    // console.log("time sequence");
-    // times.forEach(time => console.log(time));
+    //TODO choose two 19
 
     //final datasets, which including all lines, will be attached to Chart.data.datasets
     let plObjArray = [];

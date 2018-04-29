@@ -7,7 +7,7 @@ Template.issue_content.onRendered(function () {
     let graph = document.getElementById("issue_graph");
     Meteor.subscribe('issueTable', {
         onReady: function () {
-            //fixme Malformed subscription
+
             let results = issueCollection.find({});
             let data = getGraphData(results);
 

@@ -1,56 +1,56 @@
-<template name="Overall">
-    {{>Nav}}
-    <div class="w3-main" style="margin-left:340px;margin-right:40px">
-        <!-- Header -->
-        <div class="w3-container" style="margin-top:75px" id="showcase">
-            <h1 class="w3-xxxlarge w3-text-dark-gray"><b>Overall Rankings</b></h1>
-            <hr style="width:50px;border:5px solid darkorange" class="w3-round">
-        </div>
+<!--<template name="Overall">-->
+    <!--{{>Nav}}-->
+    <!--<div class="w3-main" style="margin-left:340px;margin-right:40px">-->
+        <!--&lt;!&ndash; Header &ndash;&gt;-->
+        <!--<div class="w3-container" style="margin-top:75px" id="showcase">-->
+            <!--<h1 class="w3-xxxlarge w3-text-dark-gray"><b>Overall Rankings</b></h1>-->
+            <!--<hr style="width:50px;border:5px solid darkorange" class="w3-round">-->
+        <!--</div>-->
 
 
-        <div class="w3-row">
-            <a href="javascript:void(0)" onclick="openRanking(event, 'pl');">
-                <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Programming Languages</div>
-            </a>
+        <!--<div class="w3-row">-->
+            <!--<a href="javascript:void(0)" onclick="openRanking(event, 'pl');">-->
+                <!--<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Programming Languages</div>-->
+            <!--</a>-->
 
-            <a href="javascript:void(0)" onclick="openRanking(event, 'tech');">
-                <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Web Technologies</div>
-            </a>
-        </div>
+            <!--<a href="javascript:void(0)" onclick="openRanking(event, 'tech');">-->
+                <!--<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Web Technologies</div>-->
+            <!--</a>-->
+        <!--</div>-->
 
-        <!-- Overall-PL -->
-        <div class="w3-container w3-animate-left rank" id="pl" style="margin-top:30px">
-            <h1 class="w3-xxlarge w3-text-dark-gray"><b>Graph</b></h1>
-            <hr style="width:50px;border:3px solid darkorange" class="w3-round">
-            <canvas id="Overall-PL" width="600" height="400"></canvas>
-            {{>Table}}
-        </div>
+        <!--&lt;!&ndash; Overall-PL &ndash;&gt;-->
+        <!--<div class="w3-container w3-animate-left rank" id="pl" style="margin-top:30px">-->
+            <!--<h1 class="w3-xxlarge w3-text-dark-gray"><b>Graph</b></h1>-->
+            <!--<hr style="width:50px;border:3px solid darkorange" class="w3-round">-->
+            <!--<canvas id="Overall-PL" width="600" height="400"></canvas>-->
+            <!--{{>Table}}-->
+        <!--</div>-->
 
-        <!-- Overall-Tech -->
-        <div class="w3-container w3-animate-right rank" id="tech" style="margin-top:30px;display:none">
-            <h1 class="w3-xxlarge w3-text-dark-gray"><b>Graph</b></h1>
-            <hr style="width:50px;border:3px solid darkorange" class="w3-round">
-            <canvas id="Overall-Tech" width="600" height="400"></canvas>
-            {{>Table}}
-        </div>
+        <!--&lt;!&ndash; Overall-Tech &ndash;&gt;-->
+        <!--<div class="w3-container w3-animate-right rank" id="tech" style="margin-top:30px;display:none">-->
+            <!--<h1 class="w3-xxlarge w3-text-dark-gray"><b>Graph</b></h1>-->
+            <!--<hr style="width:50px;border:3px solid darkorange" class="w3-round">-->
+            <!--<canvas id="Overall-Tech" width="600" height="400"></canvas>-->
+            <!--{{>Table}}-->
+        <!--</div>-->
 
-    </div>
+    <!--</div>-->
 
 
-    <script>
-        function openRanking(evt, name) {
-            let i, x, tablinks;
-            x = document.getElementsByClassName("rank");
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablink");
-            for (i = 0; i < x.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" w3-border-blue", "");
-            }
-            document.getElementById(name).style.display = "block";
-            evt.currentTarget.firstElementChild.className += " w3-border-blue";
-        }
-    </script>
+    <!--<script>-->
+        <!--function openRanking(evt, name) {-->
+            <!--let i, x, tablinks;-->
+            <!--x = document.getElementsByClassName("rank");-->
+            <!--for (i = 0; i < x.length; i++) {-->
+                <!--x[i].style.display = "none";-->
+            <!--}-->
+            <!--tablinks = document.getElementsByClassName("tablink");-->
+            <!--for (i = 0; i < x.length; i++) {-->
+                <!--tablinks[i].className = tablinks[i].className.replace(" w3-border-blue", "");-->
+            <!--}-->
+            <!--document.getElementById(name).style.display = "block";-->
+            <!--evt.currentTarget.firstElementChild.className += " w3-border-blue";-->
+        <!--}-->
+    <!--</script>-->
 
-</template>
+<!--</template>-->

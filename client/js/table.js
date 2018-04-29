@@ -3,29 +3,24 @@
 
 import {Mongo} from 'meteor/mongo'
 import {getTableData} from "./table_data_generator";
-import {techCollection} from "./collections";
+import {languageCollection, techCollection} from "./collections";
 
 const tableCollection = new Mongo.Collection(null);
 
 Template.Table.onCreated(function () {
     console.log(FlowRouter.getRouteName());
-
-    let tableName;
-    let collection;
-
+    let tableName, collection;
     switch (FlowRouter.getRouteName()) {
         case 'overall': {
-            tableName = "techTable";
-            collection = techCollection;
+            tableName = "languageTable";
+            collection = languageCollection;
             break;
         }
     }
-
-
     Meteor.subscribe(tableName, {
         onReady: function () {
             tableCollection.remove({});
-            let time = 20181;
+            let time = "20181";
             let tableData = getTableData(time, collection);
             tableData.forEach((obj, idx) => {
                 tableCollection.insert({
@@ -63,6 +58,15 @@ Template.Table.helpers({
 
 Template.Table.events({
     'change select'(event) {
+        let collection;
+
+        switch (FlowRouter.getRouteName()) {
+            case 'overall': {
+                collection = languageCollection;
+                break;
+            }
+        }
+
         let select = event.target;
         tableCollection.remove({});
 
@@ -73,11 +77,12 @@ Template.Table.events({
         let quarter = quarterSelect.options[quarterSelect.selectedIndex].value;
 
 
-        let time = parseInt(year + quarter);
+        let time = year + quarter;
 
         console.log(time);
 
-        let tableData = getTableData(time);
+        let tableData = getTableData(time, collection);
+
 
         tableData.forEach((obj, idx) => {
             tableCollection.insert({

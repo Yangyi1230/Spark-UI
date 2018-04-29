@@ -7,11 +7,11 @@ import {timeList} from "./data";
 
 
 Template.overall_content.onRendered(function () {
-    let ctxTech = document.getElementById("Overall-Tech");
-    let ctxPL = document.getElementById("Overall-PL");
 
     Meteor.subscribe("techTable", {
         onReady: function () {
+            let ctxTech = document.getElementById("tech_graph");
+
             let techResults = techCollection.find({});
             let techData = getGraphData(techResults);
 
@@ -44,8 +44,12 @@ Template.overall_content.onRendered(function () {
 
     Meteor.subscribe("languageTable", {
         onReady: function () {
+            let ctxPL = document.getElementById("language_graph");
+
             let plResults = languageCollection.find({});
             let plData = getGraphData(plResults);
+
+
 
             new Chart(ctxPL, {
                 type: 'line',
