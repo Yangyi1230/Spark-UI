@@ -3,10 +3,11 @@ import {getGraphData} from "./graph_data_generator";
 import {issueCollection} from "./collections";
 import {timeList} from "./data";
 
-Template.Issue.onRendered(function () {
+Template.issue_content.onRendered(function () {
     let graph = document.getElementById("issue_graph");
     Meteor.subscribe('issueTable', {
         onReady: function () {
+            //fixme Malformed subscription
             let results = issueCollection.find({});
             let data = getGraphData(results);
 

@@ -3,7 +3,6 @@
 import {Meteor} from 'meteor/meteor';
 
 
-//TODO: load data from local mongodb
 Meteor.startup(() => {
     const techCollection = new Mongo.Collection("Tech");
     const languageCollection = new Mongo.Collection("LangCombined");

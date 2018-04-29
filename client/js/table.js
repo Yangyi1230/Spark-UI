@@ -3,16 +3,30 @@
 
 import {Mongo} from 'meteor/mongo'
 import {getTableData} from "./table_data_generator";
+import {techCollection} from "./collections";
 
 const tableCollection = new Mongo.Collection(null);
 
 Template.Table.onCreated(function () {
-    Router.get('tableName');
-    Meteor.subscribe('languages', {
+    console.log(FlowRouter.getRouteName());
+
+    let tableName;
+    let collection;
+
+    switch (FlowRouter.getRouteName()) {
+        case 'overall': {
+            tableName = "techTable";
+            collection = techCollection;
+            break;
+        }
+    }
+
+
+    Meteor.subscribe(tableName, {
         onReady: function () {
             tableCollection.remove({});
             let time = 20181;
-            let tableData = getTableData(time);
+            let tableData = getTableData(time, collection);
             tableData.forEach((obj, idx) => {
                 tableCollection.insert({
                     "ranking": idx + 1,
