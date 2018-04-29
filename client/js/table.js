@@ -3,7 +3,14 @@
 
 import {Mongo} from 'meteor/mongo'
 import {getTableData} from "./table_data_generator";
-import {languageCollection, techCollection} from "./collections";
+import {
+    issueCollection,
+    languageCollection, postCollection,
+    prCollection,
+    pushCollection,
+    starCollection,
+    techCollection
+} from "./collections";
 
 const tableCollection = new Mongo.Collection(null);
 
@@ -16,6 +23,32 @@ Template.Table.onCreated(function () {
             collection = languageCollection;
             break;
         }
+        case 'issue' : {
+            tableName = "issueTable";
+            collection = issueCollection;
+            break;
+        }
+        case 'github_pull_request' : {
+            tableName = "prTable";
+            collection = prCollection;
+            break
+        }
+        case 'github_push' : {
+            tableName = "pushTable";
+            collection = pushCollection;
+            break
+        }
+        case 'github_star' : {
+            tableName = "starTable";
+            collection = starCollection;
+            break
+        }
+        case 'post' : {
+            tableName = "postTable";
+            collection = postCollection;
+            break
+        }
+
     }
     Meteor.subscribe(tableName, {
         onReady: function () {
@@ -27,7 +60,8 @@ Template.Table.onCreated(function () {
                     "ranking": idx + 1,
                     "language": obj.language,
                     "percentage": obj.score,
-                    "change": obj.change
+                    "change": obj.change,
+                    "trend": obj.trend
                 });
             });
         },
@@ -49,7 +83,8 @@ Template.Table.helpers({
                     {key: 'ranking', label: ' # ranking'},
                     {key: 'language', label: 'language'},
                     {key: 'percentage', label: 'score'},
-                    {key: 'change', label: 'change'}
+                    {key: 'change', label: 'change'},
+                    {key: 'trend', label: 'trend (%)'}
                 ]
             }
         }
@@ -65,6 +100,27 @@ Template.Table.events({
                 collection = languageCollection;
                 break;
             }
+            case 'issue' : {
+                collection = issueCollection;
+                break;
+            }
+            case 'github_pull_request' : {
+                collection = prCollection;
+                break
+            }
+            case 'github_push' : {
+                collection = pushCollection;
+                break
+            }
+            case 'github_star' : {
+                collection = starCollection;
+                break
+            }
+            case 'post' : {
+                collection = postCollection;
+                break
+            }
+
         }
 
         let select = event.target;
@@ -89,7 +145,8 @@ Template.Table.events({
                 "ranking": idx + 1,
                 "language": obj.language,
                 "percentage": obj.score,
-                "change": obj.change
+                "change": obj.change,
+                "trend": obj.trend
             });
         });
     }

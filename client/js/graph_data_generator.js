@@ -4,7 +4,7 @@ import {colorPicker} from "./line_color";
 import {timeList} from "./data";
 
 function getGraphData(results) {
-    let map = new Map();//utilize map structure supported by ES6 (languages -> [{time, score}])
+    let map = new Map(); //utilize map structure supported by ES6 (languages -> [{time, score}])
 
     results.forEach((result) => {
         //console.log(result.language);

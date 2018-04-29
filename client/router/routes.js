@@ -20,7 +20,7 @@ FlowRouter.route('/issue', {
 });
 
 FlowRouter.route('/github_pull_request', {
-    name: '/github_pull_request',
+    name: 'github_pull_request',
     action() {
         BlazeLayout.render('main', {sidebar: "sidebar", content: "pull_request_content"});
     }

@@ -3,20 +3,32 @@ import {timeList} from "./data";
 function getTableData(time, collection) {
     let tableData = [];
     let idx = timeList.indexOf(time);
+    let map = new Map();
 
     let languages = new Set();
-    collection.find({}).forEach(x => {
-        console.log(x.language + " " + x.time);
-        languages.add(x.language);
+    collection.find({}).forEach((result) => {
+        //console.log(result.language);
+        if (!map.has(result.language)) {
+            map.set(result.language, []);
+        }
+        map.get(result.language).push({time: result.time});
     });
+
+    for (const pl of map.keys()) {
+        if (map.get(pl).length === timeList.length) {
+            console.log(pl);
+            languages.add(pl);
+        }
+    }
 
     if (idx === 0) {
         let curTime = time;
         languages.forEach((pl) => {
             let cur = collection.findOne({language: pl, time: curTime});
-            let score = cur.score.toFixed(2);
-            let change = "";
-            tableData.push({language: pl, score: score, change: change});
+            let score = parseFloat(cur.score.toFixed(2));
+            let change = 0;
+            let trend = 0;
+            tableData.push({language: pl, score: score, change: change, trend: trend});
         });
 
     } else {
@@ -25,14 +37,11 @@ function getTableData(time, collection) {
         languages.forEach((pl) => {
             let cur = collection.findOne({language: pl, time: curTime});
             let pre = collection.findOne({language: pl, time: preTime});
-            console.log(cur);
-            let score = cur.score.toFixed(2);
-            let change = (cur.score - pre.score).toFixed(2);
-
-            if (change >= 0)
-                change = "+" + change;
-
-            tableData.push({language: pl, score: score, change: change});
+            //console.log(cur);
+            let score = parseFloat(cur.score.toFixed(2));
+            let change = parseFloat((cur.score - pre.score).toFixed(2));
+            let trend = parseFloat((change * 100 / pre.score).toFixed(2));
+            tableData.push({language: pl, score: score, change: change, trend: trend});
         });
     }
 
