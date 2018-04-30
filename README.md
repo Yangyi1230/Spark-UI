@@ -17,15 +17,15 @@ This repository is the web app for the Spark project in Big Data course, which d
 
 3. start up meteor:
 
-If your MongoDB is running on localhost with no password:
+	If your MongoDB is running on localhost with no password:
 
-`npm start`
+		npm start
 
-If your MongoDB enabled authentication:
+	If your MongoDB enabled authentication:
 
-`export MONGO_URI=mongodb://{username}:{passwd}@{ip}:{port}/{dbname}`
+		export MONGO_URI=mongodb://{username}:{passwd}@{ip}:{port}/{dbname}
 
-`npm remote`
+		npm remote
 
 4. open the browser, see running app at http://localhost:3000/
 
