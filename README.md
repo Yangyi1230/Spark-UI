@@ -9,6 +9,8 @@ This repository is the web app for the Spark project in Big Data course, which d
 
 - npm
 
+- Recommend to use Chrome with the latest version
+
 ## How To Run
 
 1. enter into the root file of the project
@@ -23,9 +25,8 @@ This repository is the web app for the Spark project in Big Data course, which d
 
 	If your MongoDB enabled authentication:
 
-		export MONGO_URI=mongodb://{username}:{passwd}@{ip}:{port}/{dbname}
+		export MONGO_URI=mongodb://{username}:{passwd}@{ip}:{port}/{dbname} meteor
 
-		npm remote
 
 4. open the browser, see running app at http://localhost:3000/
 
