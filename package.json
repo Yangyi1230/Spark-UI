@@ -1,9 +1,9 @@
 {
-  "name": "simple-todos",
+  "name": "Spark-UI",
   "private": true,
   "scripts": {
     "start": "MONGO_URL=mongodb://localhost/spark meteor",
-    "remote": "meteor"
+    "remote": ""
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.36",

@@ -18,7 +18,10 @@ function getGraphData(results) {
     let set = new Set();
     results.forEach((result) => {
         //TODO alter time format (now "20173")
-        set.add(result.time);
+        let time = result.time;
+        let timeString = time.substring(0, 4) + "Q" + time.substring(4, 5);
+        console.log(timeString);
+        set.add(timeString);
     });
 
     set.forEach(time => times.push(time));

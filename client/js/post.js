@@ -1,7 +1,6 @@
 import Chart from '../../node_modules/chart.js/src/chart';
 import {getGraphData} from "./graph_data_generator";
 import {postCollection} from "./collections";
-import {timeList} from "./data";
 
 Template.post_content.onRendered(function () {
     let graph = document.getElementById("post_graph");
@@ -13,7 +12,7 @@ Template.post_content.onRendered(function () {
             new Chart(graph, {
                 type: 'line',
                 data: {
-                    labels: timeList,
+                    labels: data.times,
                     datasets: data.obj
                 },
                 options: {
@@ -24,7 +23,7 @@ Template.post_content.onRendered(function () {
                         yAxes: [{
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Overall Rating'
+                                labelString: 'Score'
                             }
                         }]
                     }

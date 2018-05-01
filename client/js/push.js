@@ -13,7 +13,7 @@ Template.push_content.onRendered(function () {
             new Chart(graph, {
                 type: 'line',
                 data: {
-                    labels: timeList,
+                    labels: data.times,
                     datasets: data.obj
                 },
                 options: {
@@ -24,7 +24,7 @@ Template.push_content.onRendered(function () {
                         yAxes: [{
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Overall Rating'
+                                labelString: 'Score'
                             }
                         }]
                     }

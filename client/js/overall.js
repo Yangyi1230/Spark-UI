@@ -18,7 +18,7 @@ Template.overall_content.onRendered(function () {
             new Chart(ctxTech, {
                 type: 'line',
                 data: {
-                    labels: timeList,
+                    labels: techData.times,
                     datasets: techData.obj
                 },
                 options: {
@@ -29,7 +29,7 @@ Template.overall_content.onRendered(function () {
                         yAxes: [{
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Overall Rating'
+                                labelString: 'Score'
                             }
                         }]
                     }
@@ -50,11 +50,10 @@ Template.overall_content.onRendered(function () {
             let plData = getGraphData(plResults);
 
 
-
             new Chart(ctxPL, {
                 type: 'line',
                 data: {
-                    labels: timeList,
+                    labels: plData.times,
                     datasets: plData.obj
                 },
                 options: {
@@ -65,7 +64,7 @@ Template.overall_content.onRendered(function () {
                         yAxes: [{
                             scaleLabel: {
                                 display: true,
-                                labelString: 'Overall Rating'
+                                labelString: 'Score'
                             }
                         }]
                     }
